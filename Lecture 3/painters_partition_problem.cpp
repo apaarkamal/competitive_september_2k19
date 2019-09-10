@@ -43,14 +43,14 @@ int32_t main()
 		int i, j, k, n, m, ans = 0, cnt = 0, sum = 0;
 		cin >> n >> m;
 		int a[n];
-		int mn = 1e18;
+		int mx = -1;
 		for (i = 0; i < n; i++) {
 			cin >> a[i];
 			sum += a[i];
-			mn = min(a[i], mn);
+			mx = max(a[i], mx);
 		}
 		sort(a, a + n);
-		int lf = 0, rt = sum;
+		int lf = mx, rt = sum;
 		while (lf < rt) {
 			int mid = (lf + rt) / 2;
 			if (check(a, n, mid, m)) {
