@@ -20,45 +20,47 @@ void __f(const char* names, Arg1&& arg1, Args&&... args) {
 
 const int N = 100005;
 
-bool check(int a[], int n, int dis, int k) {
-	int  i, placed = 1, given = 0;
-	for (i = 0; i < n; i++) {
-		if (given + a[i] <= dis) {
-			given += a[i];
-		}
-		else {
-			placed++;
-			given = a[i];
+struct dsu {
+	vector<int> par, sz;
+
+	void init(int n) {
+		par.resize(n); sz.resize(n, 1);
+		for (int i = 0; i < n; i++) par[i] = i;
+	}
+
+	int get_par(int x) {
+		if (par[x] == x) return x;
+		else return par[x] = get_par(par[x]);
+	}
+
+	void unite(int x, int y) {
+		x = get_par(x);
+		y = get_par(y);
+		if (x != y) {
+			par[y] = x;
+			sz[x] += sz[y];
+			sz[y] = 0;
 		}
 	}
-	return placed <= k;
-}
+} G;
 
 int32_t main()
 {
 	ios_base:: sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
-	// int t; cin >> t; while (t--)
+	// int t;cin>>t;while(t--)
 	{
 		int i, j, k, n, m, ans = 0, cnt = 0, sum = 0;
 		cin >> n >> m;
-		int a[n];
-		int mx = -1;
+		G.init(n);
+		for (i = 0; i < m; i++) {
+			int x, y;
+			cin >> x >> y;
+			G.unite(x, y);
+		}
 		for (i = 0; i < n; i++) {
-			cin >> a[i];
-			sum += a[i];
-			mx = max(a[i], mx);
+			ans += n - G.sz[G.get_par(i)];
 		}
-		int lf = mx, rt = sum;
-		while (lf < rt) {
-			int mid = (lf + rt) / 2;
-			if (check(a, n, mid, m)) {
-				rt = mid;
-			}
-			else {
-				lf = mid + 1;
-			}
-		}
-		cout << lf;
+		cout << ans / 2;
 	}
 }
