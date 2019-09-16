@@ -19,14 +19,14 @@ struct fenwick {
 		fn.resize(n, 0);
 	}
 	void update(int x, int val) {
-		x++;
+		x++;// 1 based indexing
 		while (x <= n) {
 			fn[x] += val;
 			x += (x & (-x));
 		}
 	}
 	int query(int x) {
-		x++;
+		x++;//1 basaed indexing
 		int ans = 0;
 		while (x) {
 			ans += fn[x];
