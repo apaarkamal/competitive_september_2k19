@@ -15,10 +15,6 @@ void subsequences(string a, string b, int be, int i, int n)
 }
 int main()
 {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     {
         string a;
         cin >> a;

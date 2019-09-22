@@ -7,10 +7,6 @@ const int M = 31;
 int32_t main()
 {
     // int t;cin>>t;while(t--)
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     {
         int i, j, k, n, m, ans = 0, cnt = 0, sum = 0;
         cin >> n;

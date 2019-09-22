@@ -89,10 +89,6 @@ void sudoku_solver(int row, int col) {
 
 int main()
 {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
     //  code starts
     input_grid();
     sudoku_solver(0, 0);
