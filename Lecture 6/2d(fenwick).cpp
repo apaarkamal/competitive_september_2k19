@@ -1,6 +1,6 @@
-class BIT2D
+const int N = 1005;
+struct BIT2D
 {
-public:
 	int a[N + 1][N + 1];
 	void add(int x, int y, int val) {
 		x++; y++;
